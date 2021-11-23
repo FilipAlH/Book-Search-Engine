@@ -17,7 +17,6 @@ const SavedBooks = () => {
 
   // use this to determine if `useEffect()` hook needs to run again
   const userDataLength = Object.keys(userData).length;
-  User()
 
   const User = () => {
     const { userId } = useParams()
@@ -30,7 +29,7 @@ const SavedBooks = () => {
       }
     )
 
-    const user = data.me || {}
+    const user = data || {}
 
     if(Auth.loggedIn() && Auth.getProfile().data._id === userId) {
       return setUserData(user)
@@ -48,6 +47,8 @@ const SavedBooks = () => {
       )
     }
   }
+
+  User()
   // useEffect(() => {
   //   const getUserData = async () => {
   //     try {

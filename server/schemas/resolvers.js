@@ -22,7 +22,7 @@ const resolvers = {
         login: async(parent, { body }) => {
             console.log(body)
             const user = await User.findOne({ email: body.email })
-            
+
             if(!user) {
                 throw new AuthenticationError('No profile with this email has been found')
             }
