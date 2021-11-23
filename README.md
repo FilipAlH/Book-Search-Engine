@@ -44,4 +44,4 @@ Please feel free to contact us with comments or further questions via email, whi
 
 ## Screenshots
 
-![Screenshot](https://raw.githubusercontent.com/FilipAlH/TeachThruTalk/main/assets/images/screenshot.png)
+![book](https://user-images.githubusercontent.com/89649055/142972970-6df009ab-b6fd-4525-b9e7-f247fddc930c.png)
