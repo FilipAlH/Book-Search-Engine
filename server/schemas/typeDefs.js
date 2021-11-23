@@ -25,7 +25,7 @@ const typeDefs = gql`
 
     type Query {
         me: User
-        getSingleUser(_id: ID!): User
+       
     }
 
     input Input {

@@ -11,44 +11,20 @@ import { useParams } from 'react-router-dom'
 import { useMutation, useQuery } from '@apollo/client';
 
 const SavedBooks = () => {
-  const [userData, setUserData] = useState({});
+  
+  const { loading, data } = useQuery(
+    QUERY_ME
+  )
+  const userData = data?.me || {}
 
   const [removeBook, { error }] = useMutation(REMOVE_BOOK)
 
   // use this to determine if `useEffect()` hook needs to run again
-  const userDataLength = Object.keys(userData).length;
+  
 
-  const User = () => {
-    const { userId } = useParams()
-    console.log(userId)
+ 
 
-    const { loading, data } = useQuery(
-      QUERY_ME,
-      {
-      variables: { username: userId },
-      }
-    )
 
-    const user = data || {}
-
-    if(Auth.loggedIn() && Auth.getProfile().data._id === userId) {
-      return setUserData(user)
-    }
-
-    if(loading) {
-      return <div>Loading...</div>
-    }
-
-    if(!user?.username) {
-      return(
-        <h4>
-          You must be logged in to see your profile page. Please log in or sign up!
-        </h4>
-      )
-    }
-  }
-
-  User()
   // useEffect(() => {
   //   const getUserData = async () => {
   //     try {
@@ -92,7 +68,7 @@ const SavedBooks = () => {
       }
 
       const updatedUser = await data.json();
-      setUserData(updatedUser);
+
       // upon success, remove book's id from localStorage
       removeBookId(bookId);
     } catch (err) {
@@ -101,7 +77,7 @@ const SavedBooks = () => {
   };
 
   // if data isn't here yet, say so
-  if (!userDataLength) {
+  if (loading) {
     return <h2>LOADING...</h2>;
   }
 
